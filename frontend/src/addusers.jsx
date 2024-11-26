@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CreateUser = () => {
+const AddUser = () => {
     return (
         <div><form action="/action_page.php">
             <div class="mb-3 mt-3">
@@ -54,4 +54,4 @@ const CreateUser = () => {
 }
 
 
-export default CreateUser
+export default AddUser

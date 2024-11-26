@@ -1,9 +1,15 @@
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Users from './users'
-import CreateUser from './createuser'
+import Home from './home'
+import CreateUser from './addusers'
 import UpdateUser from './updateuser'
 import Nav from './nav'
+import OwnerView from './ownerview'
+import EmployeeView from './employeeview'
+import DriverView from './driverview'
+import LocationView from './locationview'
+import ProductView from './productview'
+import ServiceView from './serviceview'
 
 function App() {
   
@@ -12,9 +18,15 @@ function App() {
     <BrowserRouter> 
     <Nav />
       <Routes>
-        <Route path='/' element={<Users />}></Route>
-        <Route path='/create' element={<CreateUser />}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/addusers' element={<CreateUser />}></Route>
         <Route path='/update/:username' element={<UpdateUser />}></Route>
+        <Route path='/ownerview' element={<OwnerView />}></Route>
+        <Route path='/employeeview' element={<EmployeeView />}></Route>
+        <Route path='/driverview' element={<DriverView />}></Route>
+        <Route path='/locationview' element={<LocationView />}></Route>
+        <Route path='/productview' element={<ProductView />}></Route>
+        <Route path='/serviceview' element={<ServiceView />}></Route>
       </Routes>
     </BrowserRouter>
   )
