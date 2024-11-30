@@ -157,6 +157,7 @@ app.delete('/delete/:username', (req, res) => {
     })
 })
 
+// (add_service) Handling the procedure
 app.post('/add_service', (req, res) => {
     const { id, long_name, home_base, manager } = req.body;
 
@@ -172,8 +173,188 @@ app.post('/add_service', (req, res) => {
     });
 });
 
+// (add_location) Handling the procedure
+app.post('/add_location', (req, res) => {
+    const { label, x_coord, y_coord, space } = req.body;
 
+    const sql = 'CALL add_location(?, ?, ?, ?)'; 
+    const values = [label, x_coord, y_coord, space];
 
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to add location. Please check your inputs.' });
+        }
+        return res.status(200).json({ Message: 'Location added successfully!' });
+    });
+});
 
+// (start_funding) Fetch owners for the dropdown
+app.get('/owners', (req, res) => {
+    const sql = 'SELECT username FROM business_owners';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error fetching owners:', err.message);
+            return res.status(500).json({ Error: 'Failed to fetch owners.' });
+        }
+        return res.status(200).json(result);
+    });
+});
+
+// (start_funding) Fetch businesses for the dropdown
+app.get('/businesses', (req, res) => {
+    const sql = 'SELECT long_name FROM businesses';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error fetching businesses:', err.message);
+            return res.status(500).json({ Error: 'Failed to fetch businesses.' });
+        }
+        return res.status(200).json(result);
+    });
+});
+
+// (start_funding) Handling the procedure
+app.post('/start_funding', (req, res) => {
+    const { ip_owner, ip_long_name, ip_amount, ip_fund_date } = req.body;
+
+    const sql = 'CALL start_funding(?, ?, ?, ?)';
+    const values = [ip_owner, ip_long_name, ip_amount, ip_fund_date];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to start funding.' });
+        }
+        return res.status(200).json({ Message: 'Funding successfully started!' });
+    });
+});
+
+// (takeover_van) Fetch drivers for the dropdown
+app.get('/drivers', (req, res) => {
+    const sql = 'SELECT username FROM drivers';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error fetching drivers:', err.message);
+            return res.status(500).json({ Error: 'Failed to fetch drivers.' });
+        }
+        return res.status(200).json(result);
+    });
+});
+
+// (takeover_van) Fetch vans for the dropdown
+app.get('/vans', (req, res) => {
+    const sql = 'SELECT id FROM vans';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error fetching vans:', err.message);
+            return res.status(500).json({ Error: 'Failed to fetch vans.' });
+        }
+        return res.status(200).json(result);
+    });
+});
+
+// (takeover_van) Handling the procedure
+app.post('/takeover_van', (req, res) => {
+    const { username, id, tag } = req.body;
+
+    const sql = 'CALL takeover_van(?, ?, ?)';
+    const values = [username, id, tag];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to takeover van.' });
+        }
+        return res.status(200).json({ Message: 'Van takeover successful!' });
+    });
+});
+
+// (load_van) Fetch vans for the dropdown
+app.get('/vans', (req, res) => {
+    const sql = 'SELECT id FROM vans';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error fetching vans:', err.message);
+            return res.status(500).json({ Error: 'Failed to fetch vans.' });
+        }
+        return res.status(200).json(result);
+    });
+});
+
+// (load_van) Fetch products for the dropdown
+app.get('/products', (req, res) => {
+    const sql = 'SELECT barcode FROM products';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error fetching products:', err.message);
+            return res.status(500).json({ Error: 'Failed to fetch products.' });
+        }
+        return res.status(200).json(result);
+    });
+});
+
+// (load_van) Handle the procedure
+app.post('/load_van', (req, res) => {
+    const { id, tag, barcode, num_packages, price } = req.body;
+
+    const sql = 'CALL load_van(?, ?, ?, ?, ?)';
+    const values = [id, tag, barcode, num_packages, price];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to load van.' });
+        }
+        return res.status(200).json({ Message: 'Van loaded successfully!' });
+    });
+});
+
+// (refuel_van) Handle the procedure
+app.post('/refuel_van', (req, res) => {
+    const { id, tag, amount } = req.body;
+
+    const sql = 'CALL refuel_van(?, ?, ?)';
+    const values = [id, tag, amount];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to refuel van.' });
+        }
+        return res.status(200).json({ Message: 'Van refueled successfully!' });
+    });
+});
+
+// (drive_van) Handle the procedure
+app.post('/drive_van', (req, res) => {
+    const { id, tag, destination } = req.body;
+
+    const sql = 'CALL drive_van(?, ?, ?)';
+    const values = [id, tag, destination];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to drive van.' });
+        }
+        return res.status(200).json({ Message: 'Van driven successfully!' });
+    });
+});
+
+// (purchase_product) Handle the procedure
+app.post('/purchase_product', (req, res) => {
+    const { long_name, id, tag, barcode, quantity } = req.body;
+
+    const sql = 'CALL purchase_product(?, ?, ?, ?, ?)';
+    const values = [long_name, id, tag, barcode, quantity];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to purchase product.' });
+        }
+        return res.status(200).json({ Message: 'Product purchased successfully!' });
+    });
+});
 
 // db.end();

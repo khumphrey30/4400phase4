@@ -10,7 +10,7 @@ const Home = () => {
                 <Link to="/" className="btn btn-success">
                     Add Owner
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/start_funding" className="btn btn-primary">
                     Start Funding
                 </Link>
                 <Link to="/" className="btn btn-success">
@@ -50,16 +50,16 @@ const Home = () => {
                 <Link to="/" className="btn btn-success">
                     Add Van
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/takeover_van" className="btn btn-primary">
                     Takeover Van
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/load_van" className="btn btn-primary">
                     Load Van
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/refuel_van" className="btn btn-primary">
                     Refuel Van
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/drive_van" className="btn btn-primary">
                     Drive Van
                 </Link>
                 <Link to="/" className="btn btn-danger">
@@ -72,7 +72,7 @@ const Home = () => {
                 <Link to="/" className="btn btn-success">
                     Add Product
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/purchase_product" className="btn btn-primary">
                     Purchase Product
                 </Link>
                 <Link to="/" className="btn btn-danger">
@@ -84,7 +84,7 @@ const Home = () => {
 
             <h5 className="mb-4 mt-5">Locations</h5>
             <div className="d-flex flex-wrap gap-3">
-                <Link to="/" className="btn btn-success">
+                <Link to="/add_location" className="btn btn-success">
                     Add Location
                 </Link>
                 </div>

@@ -19,6 +19,13 @@ import RemoveProduct from './removeproduct'
 import RemoveVan from './removevan'
 import RemoveDriverRole from './removedriverrole'
 import AddService from './add_service';
+import AddLocation from './add_location';
+import StartFunding from './start_funding';
+import TakeoverVan from './takeover_van';
+import LoadVan from './load_van';
+import RefuelVan from './refuel_van';
+import DriveVan from './drive_van';
+import PurchaseProduct from './purchase_product';
 
 function App() {
   
@@ -45,6 +52,13 @@ function App() {
         <Route path='/removevan' element={<RemoveVan />}></Route>
         <Route path='/removedriverrole' element={<RemoveDriverRole />}></Route>
         <Route path='/add_service' element={<AddService />}></Route>
+        <Route path='/add_location' element={<AddLocation />}></Route>
+        <Route path='/start_funding' element={<StartFunding />}></Route>
+        <Route path='/takeover_van' element={<TakeoverVan />}></Route>
+        <Route path='/load_van' element={<LoadVan />}></Route>
+        <Route path='/refuel_van' element={<RefuelVan />}></Route>
+        <Route path='/drive_van' element={<DriveVan />}></Route>
+        <Route path='/purchase_product' element={<PurchaseProduct />}></Route>
       </Routes>
     </BrowserRouter>
   )
