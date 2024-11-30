@@ -157,7 +157,20 @@ app.delete('/delete/:username', (req, res) => {
     })
 })
 
+app.post('/add_service', (req, res) => {
+    const { id, long_name, home_base, manager } = req.body;
 
+    const sql = 'CALL add_service(?, ?, ?, ?)'; 
+    const values = [id, long_name, home_base, manager];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing stored procedure:', err.message);
+            return res.status(500).json({ Error: 'Failed to add service. Please check your inputs.' });
+        }
+        return res.status(200).json({ Message: 'Service added successfully!' });
+    });
+});
 
 
 

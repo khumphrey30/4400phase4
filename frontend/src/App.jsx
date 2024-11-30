@@ -10,6 +10,7 @@ import DriverView from './driverview'
 import LocationView from './locationview'
 import ProductView from './productview'
 import ServiceView from './serviceview'
+import AddService from './add_service';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
         <Route path='/locationview' element={<LocationView />}></Route>
         <Route path='/productview' element={<ProductView />}></Route>
         <Route path='/serviceview' element={<ServiceView />}></Route>
+        <Route path='/add_service' element={<AddService />}></Route>
       </Routes>
     </BrowserRouter>
   )

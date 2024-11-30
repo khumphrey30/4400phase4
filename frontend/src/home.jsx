@@ -16,7 +16,7 @@ const Home = () => {
                 <Link to="/" className="btn btn-success">
                     Add Business
                 </Link>
-                <Link to="/" className="btn btn-success">
+                <Link to="/add_service" className="btn btn-success">
                     Add Service
                 </Link>
             </div>
