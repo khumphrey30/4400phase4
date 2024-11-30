@@ -1,7 +1,7 @@
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './home'
-import CreateUser from './addusers'
+import AddOwner from './addowner'
 import UpdateUser from './updateuser'
 import Nav from './nav'
 import OwnerView from './ownerview'
@@ -11,6 +11,7 @@ import LocationView from './locationview'
 import ProductView from './productview'
 import ServiceView from './serviceview'
 
+
 function App() {
   
 
@@ -19,7 +20,7 @@ function App() {
     <Nav />
       <Routes>
         <Route path='/' element={<Home />}></Route>
-        <Route path='/addusers' element={<CreateUser />}></Route>
+        <Route path='/addowner' element={<AddOwner />}></Route>
         <Route path='/update/:username' element={<UpdateUser />}></Route>
         <Route path='/ownerview' element={<OwnerView />}></Route>
         <Route path='/employeeview' element={<EmployeeView />}></Route>

@@ -7,7 +7,7 @@ const Home = () => {
             <h3 className="mb-4">Manage Your Business</h3>
             <h5 className="mb-4 mt-5">Owners</h5>
             <div className="d-flex flex-wrap gap-3 mb-5">
-                <Link to="/" className="btn btn-success">
+                <Link to="/addowner" className="btn btn-success">
                     Add Owner
                 </Link>
                 <Link to="/" className="btn btn-primary">

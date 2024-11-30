@@ -35,7 +35,7 @@ db.connect();
 db.query('select * from display_employee_view;', (err, rows, fields) => {
     if (err) throw err;
   
-    console.log(rows);
+    //console.log(rows);
   })
   
 app.get('/', (req, res) => {
@@ -49,18 +49,18 @@ app.get('/', (req, res) => {
 })
 
 
-app.post('/adduser', (req, res) => {
-    const users = "insert into users (username, fname, lname, address, birthdate) values(?); ";
+app.post('/addowner', (req, res) => {
+    const users = "call add_owner(?)";
     const values = [       
         req.body.username,
         req.body.fname,
         req.body.lname,
         req.body.address,
-        req.body.birthdate]
+        req.body.bdate]
 
-    db.query(sql, [values], (err, data) => {
+    db.query(users, [values], (err, data) => {
         if(err){
-            return res.json({Error: "Error"})
+            return res.json({Error: err})
         }
         return res.json(data)
     })
