@@ -13,7 +13,7 @@ const Home = () => {
                 <Link to="/start_funding" className="btn btn-primary">
                     Start Funding
                 </Link>
-                <Link to="/" className="btn btn-success">
+                <Link to="/addbusiness" className="btn btn-success">
                     Add Business
                 </Link>
                 <Link to="/add_service" className="btn btn-success">
@@ -22,32 +22,32 @@ const Home = () => {
             </div>
             <h5 className="mb-4 mt-5">Employees</h5>
             <div className="d-flex flex-wrap gap-3">
-                <Link to="/" className="btn btn-success">
+                <Link to="/add_employees.jsx" className="btn btn-success">
                     Add Employees
                 </Link>
-                <Link to="/" className="btn btn-success">
+                <Link to="/add_driver_role" className="btn btn-success">
                     Add Driver Role
                 </Link>
-                <Link to="/" className="btn btn-success">
+                <Link to="/add_worker_role" className="btn btn-success">
                     Add Worker Role
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/hireemployee" className="btn btn-primary">
                     Hire Employee
                 </Link>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/manageservice" className="btn btn-primary">
                     Manage Service
                 </Link>
-                <Link to="/" className="btn btn-danger">
+                <Link to="/removedriverrole" className="btn btn-danger">
                     Remove Driver Role
                 </Link>
-                <Link to="/" className="btn btn-danger">
+                <Link to="/fireemployee" className="btn btn-danger">
                     Fire Employee
                 </Link>
             </div>
 
             <h5 className="mb-4 mt-5">Vans</h5>
             <div className="d-flex flex-wrap gap-3">
-                <Link to="/" className="btn btn-success">
+                <Link to="/addvan" className="btn btn-success">
                     Add Van
                 </Link>
                 <Link to="/takeover_van" className="btn btn-primary">
@@ -62,20 +62,20 @@ const Home = () => {
                 <Link to="/drive_van" className="btn btn-primary">
                     Drive Van
                 </Link>
-                <Link to="/" className="btn btn-danger">
+                <Link to="/removevan" className="btn btn-danger">
                     Remove Van
                 </Link>
             </div>
 
             <h5 className="mb-4 mt-5">Products</h5>
             <div className="d-flex flex-wrap gap-3">
-                <Link to="/" className="btn btn-success">
+                <Link to="/add_product" className="btn btn-success">
                     Add Product
                 </Link>
                 <Link to="/purchase_product" className="btn btn-primary">
                     Purchase Product
                 </Link>
-                <Link to="/" className="btn btn-danger">
+                <Link to="/removeproduct" className="btn btn-danger">
                     Remove Product
                 </Link>
                 </div>
