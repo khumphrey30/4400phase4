@@ -357,138 +357,138 @@ app.post('/purchase_product', (req, res) => {
     });
 });
 
-// (add_worker_role) Handling the procedure
-app.post('/api/add-worker-role', (req, res) => {
-    const { username } = req.body;
+// // (add_worker_role) Handling the procedure
+// app.post('/api/add-worker-role', (req, res) => {
+//     const { username } = req.body;
 
-    if (!username) {
-        return res.status(400).json({ message: 'Username is required.' });
-    }
+//     if (!username) {
+//         return res.status(400).json({ message: 'Username is required.' });
+//     }
 
-    const sql = 'CALL add_worker_role(?)';
-    const values = [username];
+//     const sql = 'CALL add_worker_role(?)';
+//     const values = [username];
 
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error('Error executing stored procedure:', err.message);
-            return res.status(500).json({ Error: 'Failed to add worker role. Please try again.' });
-        }
+//     db.query(sql, values, (err, result) => {
+//         if (err) {
+//             console.error('Error executing stored procedure:', err.message);
+//             return res.status(500).json({ Error: 'Failed to add worker role. Please try again.' });
+//         }
 
-        if (result.affectedRows > 0) {
-            return res.status(200).json({ Message: `Worker role added for username: ${username}.` });
-        } else {
-            return res.status(200).json({ Message: `No changes made. Username ${username} may not exist or already has a worker/driver role.` });
-        }
-    });
-});
+//         if (result.affectedRows > 0) {
+//             return res.status(200).json({ Message: `Worker role added for username: ${username}.` });
+//         } else {
+//             return res.status(200).json({ Message: `No changes made. Username ${username} may not exist or already has a worker/driver role.` });
+//         }
+//     });
+// });
 
-// (add_product) Handling the procedure
-app.post('/api/add-product', (req, res) => {
-    const { productName, productPrice, productCategory } = req.body;
+// // (add_product) Handling the procedure
+// app.post('/api/add-product', (req, res) => {
+//     const { productName, productPrice, productCategory } = req.body;
 
-    if (!productName || !productPrice || !productCategory) {
-        return res.status(400).json({ message: 'Product name, price, and category are required.' });
-    }
+//     if (!productName || !productPrice || !productCategory) {
+//         return res.status(400).json({ message: 'Product name, price, and category are required.' });
+//     }
 
-    const sql = 'CALL add_product(?, ?, ?)';
-    const values = [productName, productPrice, productCategory];
+//     const sql = 'CALL add_product(?, ?, ?)';
+//     const values = [productName, productPrice, productCategory];
 
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error('Error executing stored procedure:', err.message);
-            return res.status(500).json({ Error: 'Failed to add product. Please check your inputs.' });
-        }
+//     db.query(sql, values, (err, result) => {
+//         if (err) {
+//             console.error('Error executing stored procedure:', err.message);
+//             return res.status(500).json({ Error: 'Failed to add product. Please check your inputs.' });
+//         }
 
-        return res.status(200).json({ Message: 'Product added successfully!' });
-    });
-});
+//         return res.status(200).json({ Message: 'Product added successfully!' });
+//     });
+// });
 
-// (add_driver_role) Handling the procedure
-app.post('/api/add-driver-role', (req, res) => {
-    const { username, licenseID, licenseType, driverExperience } = req.body;
+// // (add_driver_role) Handling the procedure
+// app.post('/api/add-driver-role', (req, res) => {
+//     const { username, licenseID, licenseType, driverExperience } = req.body;
 
-    // Validate input
-    if (!username || !licenseID || !licenseType || driverExperience === undefined) {
-        return res.status(400).json({
-            message: 'Username, licenseID, licenseType, and driverExperience are required.',
-        });
-    }
+//     // Validate input
+//     if (!username || !licenseID || !licenseType || driverExperience === undefined) {
+//         return res.status(400).json({
+//             message: 'Username, licenseID, licenseType, and driverExperience are required.',
+//         });
+//     }
 
-    const sql = 'CALL add_driver_role(?, ?, ?, ?)';
-    const values = [username, licenseID, licenseType, driverExperience];
+//     const sql = 'CALL add_driver_role(?, ?, ?, ?)';
+//     const values = [username, licenseID, licenseType, driverExperience];
 
-    // Execute the query
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error('Error executing stored procedure:', err.message);
-            return res.status(500).json({
-                error: 'Failed to add driver role. Please check your inputs.',
-            });
-        }
+//     // Execute the query
+//     db.query(sql, values, (err, result) => {
+//         if (err) {
+//             console.error('Error executing stored procedure:', err.message);
+//             return res.status(500).json({
+//                 error: 'Failed to add driver role. Please check your inputs.',
+//             });
+//         }
 
-        return res.status(200).json({
-            message: 'Driver role added successfully!',
-        });
-    });
-});
+//         return res.status(200).json({
+//             message: 'Driver role added successfully!',
+//         });
+//     });
+// });
 
-// (add_employee) Handling the procedure
-app.post('/api/add-employee', (req, res) => {
-    const {
-        username,
-        firstName,
-        lastName,
-        address,
-        birthdate,
-        taxID,
-        hired,
-        employeeExperience,
-        salary,
-    } = req.body;
+// // (add_employee) Handling the procedure
+// app.post('/api/add-employee', (req, res) => {
+//     const {
+//         username,
+//         firstName,
+//         lastName,
+//         address,
+//         birthdate,
+//         taxID,
+//         hired,
+//         employeeExperience,
+//         salary,
+//     } = req.body;
 
-    // Validate input
-    if (
-        !username ||
-        !firstName ||
-        !lastName ||
-        !address ||
-        !birthdate ||
-        !taxID ||
-        !hired ||
-        employeeExperience === undefined ||
-        salary === undefined
-    ) {
-        return res.status(400).json({
-            message: 'All fields are required.',
-        });
-    }
+//     // Validate input
+//     if (
+//         !username ||
+//         !firstName ||
+//         !lastName ||
+//         !address ||
+//         !birthdate ||
+//         !taxID ||
+//         !hired ||
+//         employeeExperience === undefined ||
+//         salary === undefined
+//     ) {
+//         return res.status(400).json({
+//             message: 'All fields are required.',
+//         });
+//     }
 
-    const sql = 'CALL add_employee(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    const values = [
-        username,
-        firstName,
-        lastName,
-        address,
-        birthdate,
-        taxID,
-        hired,
-        employeeExperience,
-        salary,
-    ];
+//     const sql = 'CALL add_employee(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+//     const values = [
+//         username,
+//         firstName,
+//         lastName,
+//         address,
+//         birthdate,
+//         taxID,
+//         hired,
+//         employeeExperience,
+//         salary,
+//     ];
 
-    // Execute the query
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error('Error executing stored procedure:', err.message);
-            return res.status(500).json({
-                error: 'Failed to add employee. Please check your inputs.',
-            });
-        }
+//     // Execute the query
+//     db.query(sql, values, (err, result) => {
+//         if (err) {
+//             console.error('Error executing stored procedure:', err.message);
+//             return res.status(500).json({
+//                 error: 'Failed to add employee. Please check your inputs.',
+//             });
+//         }
 
-        return res.status(200).json({
-            message: 'Employee added successfully!',
-        });
-    });
-});
+//         return res.status(200).json({
+//             message: 'Employee added successfully!',
+//         });
+//     });
+// });
 
-// db.end();
+// // db.end();

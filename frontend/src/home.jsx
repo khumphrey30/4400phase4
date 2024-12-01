@@ -22,7 +22,7 @@ const Home = () => {
             </div>
             <h5 className="mb-4 mt-5">Employees</h5>
             <div className="d-flex flex-wrap gap-3">
-                <Link to="/add_employees.jsx" className="btn btn-success">
+                <Link to="/add_employees" className="btn btn-success">
                     Add Employees
                 </Link>
                 <Link to="/add_driver_role" className="btn btn-success">
