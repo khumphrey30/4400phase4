@@ -26,6 +26,10 @@ import LoadVan from './load_van';
 import RefuelVan from './refuel_van';
 import DriveVan from './drive_van';
 import PurchaseProduct from './purchase_product';
+import AddEmployee from './add_employees';
+import AddProduct from './add_product';
+import AddWorkerRole from './add_worker_role';
+import AddDriverRole from './add_driver_role'
 
 
 function App() {
@@ -37,6 +41,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/addowner' element={<AddOwner />}></Route>
+        <Route path='/add_employees' element={<AddEmployee />}></Route>
+        <Route path='/add_product' element={<AddProduct />}></Route>
+        <Route path='/add_worker_role' element={<AddWorkerRole />}></Route>
+        <Route path='/add_driver_role' element={<AddDriverRole />}></Route>
         <Route path='/update/:username' element={<UpdateUser />}></Route>
         <Route path='/ownerview' element={<OwnerView />}></Route>
         <Route path='/employeeview' element={<EmployeeView />}></Route>
