@@ -35,111 +35,172 @@ const AddEmployee = () => {
     };
 
     return (
-        <div>
-            <h1>Add New Employee</h1>
+        <div className="container mt-5">
+            <h3>Add Employee</h3>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
+                {/* Username */}
+                <div className="form-group mb-3">
+                    <label htmlFor="username" className="form-label">Username:</label>
                     <input
                         type="text"
+                        className="form-control"
+                        id="username"
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    First Name:
+                </div>
+
+                {/* First Name */}
+                <div className="form-group mb-3">
+                    <label htmlFor="firstName" className="form-label">First Name:</label>
                     <input
                         type="text"
+                        className="form-control"
+                        id="firstName"
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Last Name:
+                </div>
+
+                {/* Last Name */}
+                <div className="form-group mb-3">
+                    <label htmlFor="lastName" className="form-label">Last Name:</label>
                     <input
                         type="text"
+                        className="form-control"
+                        id="lastName"
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Address:
+                </div>
+
+                {/* Address */}
+                <div className="form-group mb-3">
+                    <label htmlFor="address" className="form-label">Address:</label>
                     <input
                         type="text"
+                        className="form-control"
+                        id="address"
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Birthdate:
+                </div>
+
+                {/* Birthdate */}
+                <div className="form-group mb-3">
+                    <label htmlFor="birthdate" className="form-label">Birthdate:</label>
                     <input
                         type="date"
+                        className="form-control"
+                        id="birthdate"
                         name="birthdate"
                         value={formData.birthdate}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Tax ID:
+                </div>
+
+                {/* Tax ID */}
+                <div className="form-group mb-3">
+                    <label htmlFor="taxID" className="form-label">Tax ID:</label>
                     <input
                         type="text"
+                        className="form-control"
+                        id="taxID"
                         name="taxID"
                         value={formData.taxID}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Hired Date:
+                </div>
+
+                {/* Hired Date */}
+                <div className="form-group mb-3">
+                    <label htmlFor="hired" className="form-label">Hired Date:</label>
                     <input
                         type="date"
+                        className="form-control"
+                        id="hired"
                         name="hired"
                         value={formData.hired}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Experience (Years):
+                </div>
+
+                {/* Employee Experience */}
+                <div className="form-group mb-3">
+                    <label htmlFor="employeeExperience" className="form-label">
+                        Experience (Years):
+                    </label>
                     <input
                         type="number"
+                        className="form-control"
+                        id="employeeExperience"
                         name="employeeExperience"
                         value={formData.employeeExperience}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <label>
-                    Salary:
+                </div>
+
+                {/* Salary */}
+                <div className="form-group mb-3">
+                    <label htmlFor="salary" className="form-label">Salary:</label>
                     <input
                         type="number"
+                        className="form-control"
+                        id="salary"
                         name="salary"
                         value={formData.salary}
                         onChange={handleChange}
                         required
                     />
-                </label>
-                <br />
-                <button type="submit">Add Employee</button>
+                </div>
+
+                {/* Submit Button */}
+                <div className="d-flex gap-2 mt-4">
+                    <button type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => setFormData({
+                            username: '',
+                            firstName: '',
+                            lastName: '',
+                            address: '',
+                            birthdate: '',
+                            taxID: '',
+                            hired: '',
+                            employeeExperience: '',
+                            salary: '',
+                        })}
+                    >
+                        Reset
+                    </button>
+                </div>
             </form>
-            {message && <p>{message}</p>}
+
+            {/* Message */}
+            {message && (
+                <div
+                    className={`mt-3 alert ${
+                        message.includes('successfully') ? 'alert-success' : 'alert-danger'
+                    }`}
+                >
+                    {message}
+                </div>
+            )}
         </div>
     );
 };

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -20,21 +19,32 @@ const AddWorkerRole = () => {
   };
 
   return (
-    <div>
-      <h2>Add Worker Role</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
+    <div className="container mt-5">
+      <h3>Procedure: Add Worker Role</h3>
+      <form onSubmit={handleSubmit} className="mt-4">
+        <div className="form-group">
+          <label>Username:</label>
           <input
             type="text"
+            className="form-control"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Add Role</button>
+        </div>
+        <button type="submit" className="btn btn-primary mt-3">
+          Add Role
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && (
+        <div
+          className={`mt-3 alert ${
+            message.toLowerCase().includes('error') ? 'alert-danger' : 'alert-success'
+          }`}
+        >
+          {message}
+        </div>
+      )}
     </div>
   );
 };

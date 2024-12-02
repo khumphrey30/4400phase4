@@ -5,7 +5,7 @@ const AddProduct = () => {
   const [barcode, setBarcode] = useState("");
   const [name, setName] = useState("");
   const [weight, setWeight] = useState("");
-  const [message, setMessage] = useState(null); // For success/failure messages
+  const [message, setMessage] = useState(null);
 
   const handleAddProduct = () => {
     axios
@@ -30,6 +30,7 @@ const AddProduct = () => {
   return (
     <div className="container mt-5">
       <h3>Procedure: Add Product</h3>
+
       <div className="form-group mt-3">
         <label>Barcode:</label>
         <input
@@ -39,6 +40,7 @@ const AddProduct = () => {
           onChange={(e) => setBarcode(e.target.value)}
         />
       </div>
+
       <div className="form-group mt-3">
         <label>Name:</label>
         <input
@@ -48,6 +50,7 @@ const AddProduct = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
+
       <div className="form-group mt-3">
         <label>Weight:</label>
         <input
@@ -57,6 +60,7 @@ const AddProduct = () => {
           onChange={(e) => setWeight(e.target.value)}
         />
       </div>
+
       <div className="d-flex gap-2 mt-4">
         <button className="btn btn-primary" onClick={handleAddProduct}>
           Add
@@ -73,12 +77,11 @@ const AddProduct = () => {
           Cancel
         </button>
       </div>
+
       {message && (
         <div
           className={`mt-3 alert ${
-            message.includes("successfully")
-              ? "alert-success"
-              : "alert-danger"
+            message.includes("successfully") ? "alert-success" : "alert-danger"
           }`}
         >
           {message}
