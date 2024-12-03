@@ -44,83 +44,114 @@ const LoadVan = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h3>Procedure: Load Van</h3>
-      <div className="form-group mt-3">
-        <label>ID:</label>
-        <select
-          className="form-control"
-          value={selectedVan}
-          onChange={(e) => setSelectedVan(e.target.value)}
-        >
-          <option value="" disabled>Select a van ID</option>
-          {vans.map((van) => (
-            <option key={van.id} value={van.id}>
-              {van.id}
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Load Van</h5>
+      <form className="w-50">
+        <div className="mb-3 mt-3">
+          <label htmlFor="vanId" className="form-label">
+            Van ID:
+          </label>
+          <select
+            className="form-control"
+            value={selectedVan}
+            onChange={(e) => setSelectedVan(e.target.value)}
+            id="vanId"
+          >
+            <option value="" disabled>
+              Select a van ID
             </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-group mt-3">
-        <label>tag:</label>
-        <input
-          type="number"
-          className="form-control"
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
-        />
-      </div>
-      <div className="form-group mt-3">
-        <label>barcode:</label>
-        <select
-          className="form-control"
-          value={selectedProduct}
-          onChange={(e) => setSelectedProduct(e.target.value)}
-        >
-          <option value="" disabled>Select a barcode</option>
-          {products.map((product) => (
-            <option key={product.barcode} value={product.barcode}>
-              {product.barcode}
+            {vans.map((van) => (
+              <option key={van.id} value={van.id}>
+                {van.id}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="tag"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+            placeholder="Enter tag"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="productBarcode" className="form-label">
+            Barcode:
+          </label>
+          <select
+            className="form-control"
+            value={selectedProduct}
+            onChange={(e) => setSelectedProduct(e.target.value)}
+            id="productBarcode"
+          >
+            <option value="" disabled>
+              Select a barcode
             </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-group mt-3">
-        <label>num. packages:</label>
-        <input
-          type="number"
-          className="form-control"
-          value={numPackages}
-          onChange={(e) => setNumPackages(e.target.value)}
-        />
-      </div>
-      <div className="form-group mt-3">
-        <label>price:</label>
-        <input
-          type="number"
-          className="form-control"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      </div>
-      <div className="d-flex gap-2 mt-4">
-        <button className="btn btn-primary" onClick={handleLoadVan}>
-          Deliver
-        </button>
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            setSelectedVan("");
-            setTag("");
-            setSelectedProduct("");
-            setNumPackages("");
-            setPrice("");
-            setMessage(null);
-          }}
-        >
-          Cancel
-        </button>
-      </div>
+            {products.map((product) => (
+              <option key={product.barcode} value={product.barcode}>
+                {product.barcode}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="numPackages" className="form-label">
+            Number of Packages:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="numPackages"
+            value={numPackages}
+            onChange={(e) => setNumPackages(e.target.value)}
+            placeholder="Enter number of packages"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="price" className="form-label">
+            Price:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter price"
+          />
+        </div>
+
+        <div className="d-flex gap-2 mt-4">
+          <button type="button" className="btn btn-primary" onClick={handleLoadVan}>
+            Deliver
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              setSelectedVan("");
+              setTag("");
+              setSelectedProduct("");
+              setNumPackages("");
+              setPrice("");
+              setMessage(null);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+
       {message && (
         <div
           className={`mt-3 alert ${

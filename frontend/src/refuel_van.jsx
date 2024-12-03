@@ -39,59 +39,82 @@ const RefuelVan = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h3>Procedure: Refuel Van</h3>
-      <div className="form-group mt-3">
-        <label>Id:</label>
-        <select
-          className="form-control"
-          value={selectedVan}
-          onChange={(e) => setSelectedVan(e.target.value)}
-        >
-          <option value="" disabled>
-            Select a van ID
-          </option>
-          {vans.map((van) => (
-            <option key={van.id} value={van.id}>
-              {van.id}
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Refuel Van</h5>
+      <form className="w-50">
+        {/* Van selection */}
+        <div className="mb-3">
+          <label htmlFor="vanId" className="form-label">
+            Van ID:
+          </label>
+          <select
+            className="form-control"
+            value={selectedVan}
+            onChange={(e) => setSelectedVan(e.target.value)}
+            id="vanId"
+          >
+            <option value="" disabled>
+              Select a van ID
             </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-group mt-3">
-        <label>Tag:</label>
-        <input
-          type="number"
-          className="form-control"
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
-        />
-      </div>
-      <div className="form-group mt-3">
-        <label>More Fuel:</label>
-        <input
-          type="number"
-          className="form-control"
-          value={fuelAmount}
-          onChange={(e) => setFuelAmount(e.target.value)}
-        />
-      </div>
-      <div className="d-flex gap-2 mt-4">
-        <button className="btn btn-primary" onClick={handleRefuelVan}>
-          Refuel
-        </button>
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            setSelectedVan("");
-            setTag("");
-            setFuelAmount("");
-            setMessage(null);
-          }}
-        >
-          Cancel
-        </button>
-      </div>
+            {vans.map((van) => (
+              <option key={van.id} value={van.id}>
+                {van.id}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Tag input */}
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="tag"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+            placeholder="Enter tag"
+          />
+        </div>
+
+        {/* Fuel amount input */}
+        <div className="mb-3">
+          <label htmlFor="fuelAmount" className="form-label">
+            More Fuel:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="fuelAmount"
+            value={fuelAmount}
+            onChange={(e) => setFuelAmount(e.target.value)}
+            placeholder="Enter fuel amount"
+          />
+        </div>
+
+        {/* Action buttons */}
+        <div className="d-flex gap-2 mt-4">
+          <button type="button" className="btn btn-primary" onClick={handleRefuelVan}>
+            Refuel
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              setSelectedVan("");
+              setTag("");
+              setFuelAmount("");
+              setMessage(null);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+
+      {/* Message feedback */}
       {message && (
         <div
           className={`mt-3 alert ${
@@ -106,3 +129,5 @@ const RefuelVan = () => {
 };
 
 export default RefuelVan;
+
+

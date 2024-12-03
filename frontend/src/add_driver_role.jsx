@@ -29,57 +29,84 @@ const AddDriverRole = () => {
     }
   };
 
+  const handleCancel = () => {
+    setFormData({
+      username: '',
+      licenseID: '',
+      licenseType: '',
+      driverExperience: '',
+    });
+    setMessage('');
+  };
+
   return (
-    <div className="container mt-5">
-      <h3>Procedure: Add Driver Role</h3>
-      <form onSubmit={handleSubmit} className="mt-4">
-        <div className="form-group">
-          <label>Username:</label>
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Add Driver Role</h5>
+      <form className="w-50" onSubmit={handleSubmit}>
+        <div className="mb-3 mt-3">
+          <label htmlFor="username" className="form-label">Username:</label>
           <input
             type="text"
             className="form-control"
+            id="username"
             name="username"
             value={formData.username}
             onChange={handleChange}
+            placeholder="Enter username"
             required
           />
         </div>
-        <div className="form-group mt-3">
-          <label>License ID:</label>
+        <div className="mb-3">
+          <label htmlFor="licenseID" className="form-label">License ID:</label>
           <input
             type="text"
             className="form-control"
+            id="licenseID"
             name="licenseID"
             value={formData.licenseID}
             onChange={handleChange}
+            placeholder="Enter license ID"
             required
           />
         </div>
-        <div className="form-group mt-3">
-          <label>License Type:</label>
+        <div className="mb-3">
+          <label htmlFor="licenseType" className="form-label">License Type:</label>
           <input
             type="text"
             className="form-control"
+            id="licenseType"
             name="licenseType"
             value={formData.licenseType}
             onChange={handleChange}
+            placeholder="Enter license type"
             required
           />
         </div>
-        <div className="form-group mt-3">
-          <label>Driver Experience (years):</label>
+        <div className="mb-3">
+          <label htmlFor="driverExperience" className="form-label">Driver Experience (years):</label>
           <input
             type="number"
             className="form-control"
+            id="driverExperience"
             name="driverExperience"
             value={formData.driverExperience}
             onChange={handleChange}
+            placeholder="Enter years of experience"
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-4">
-          Add Driver Role
-        </button>
+        <div className="d-flex gap-2 mt-4">
+          <button type="submit" className="btn btn-primary">
+            Add
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
       {message && (
         <div
@@ -95,4 +122,5 @@ const AddDriverRole = () => {
 };
 
 export default AddDriverRole;
+
 

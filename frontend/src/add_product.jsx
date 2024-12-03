@@ -28,10 +28,10 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h3>Procedure: Add Product</h3>
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Add Product</h5>
 
-      <div className="form-group mt-3">
+      <div className="form-group mt-3 w-50">
         <label>Barcode:</label>
         <input
           type="text"
@@ -41,7 +41,7 @@ const AddProduct = () => {
         />
       </div>
 
-      <div className="form-group mt-3">
+      <div className="form-group mt-3 w-50">
         <label>Name:</label>
         <input
           type="text"
@@ -51,7 +51,7 @@ const AddProduct = () => {
         />
       </div>
 
-      <div className="form-group mt-3">
+      <div className="form-group mt-3 w-50">
         <label>Weight:</label>
         <input
           type="number"

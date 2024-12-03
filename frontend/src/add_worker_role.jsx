@@ -18,23 +18,39 @@ const AddWorkerRole = () => {
     }
   };
 
+  const handleCancel = () => {
+    setUsername('');
+    setMessage('');
+  };
+
   return (
-    <div className="container mt-5">
-      <h3>Procedure: Add Worker Role</h3>
-      <form onSubmit={handleSubmit} className="mt-4">
-        <div className="form-group">
-          <label>Username:</label>
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Add Worker Role</h5>
+      <form className="w-50" onSubmit={handleSubmit}>
+        <div className="mb-3 mt-3">
+          <label htmlFor="username" className="form-label">Username:</label>
           <input
             type="text"
             className="form-control"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter username"
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-3">
-          Add Role
-        </button>
+        <div className="d-flex gap-2 mt-4">
+          <button type="submit" className="btn btn-primary">
+            Add Role
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
       {message && (
         <div
@@ -50,3 +66,4 @@ const AddWorkerRole = () => {
 };
 
 export default AddWorkerRole;
+

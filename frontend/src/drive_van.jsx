@@ -38,59 +38,77 @@ const DriveVan = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h3>Procedure: Drive Van</h3>
-      <div className="form-group mt-3">
-        <label>ID:</label>
-        <select
-          className="form-control"
-          value={selectedVan}
-          onChange={(e) => setSelectedVan(e.target.value)}
-        >
-          <option value="" disabled>
-            Select a van ID
-          </option>
-          {vans.map((van) => (
-            <option key={van.id} value={van.id}>
-              {van.id}
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Drive Van</h5>
+      <form className="w-50">
+        <div className="mb-3 mt-3">
+          <label htmlFor="vanId" className="form-label">
+            Van ID:
+          </label>
+          <select
+            className="form-control"
+            value={selectedVan}
+            onChange={(e) => setSelectedVan(e.target.value)}
+            id="vanId"
+          >
+            <option value="" disabled>
+              Select a van ID
             </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-group mt-3">
-        <label>Tag:</label>
-        <input
-          type="number"
-          className="form-control"
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
-        />
-      </div>
-      <div className="form-group mt-3">
-        <label>Destination:</label>
-        <input
-          type="text"
-          className="form-control"
-          value={destination}
-          onChange={(e) => setDestination(e.target.value)}
-        />
-      </div>
-      <div className="d-flex gap-2 mt-4">
-        <button className="btn btn-primary" onClick={handleDriveVan}>
-          Drive
-        </button>
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            setSelectedVan("");
-            setTag("");
-            setDestination("");
-            setMessage(null);
-          }}
-        >
-          Cancel
-        </button>
-      </div>
+            {vans.map((van) => (
+              <option key={van.id} value={van.id}>
+                {van.id}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="tag"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+            placeholder="Enter tag"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="destination" className="form-label">
+            Destination:
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="destination"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            placeholder="Enter destination"
+          />
+        </div>
+
+        <div className="d-flex gap-2 mt-4">
+          <button type="button" className="btn btn-primary" onClick={handleDriveVan}>
+            Drive
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              setSelectedVan("");
+              setTag("");
+              setDestination("");
+              setMessage(null);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+
       {message && (
         <div
           className={`mt-3 alert ${

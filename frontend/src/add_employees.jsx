@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddEmployee = () => {
     const [formData, setFormData] = useState({
-        username: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        birthdate: '',
-        taxID: '',
-        hired: '',
-        employeeExperience: '',
-        salary: '',
+        username: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+        birthdate: "",
+        taxID: "",
+        hired: "",
+        employeeExperience: "",
+        salary: ""
     });
-
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,23 +22,36 @@ const AddEmployee = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
-            const response = await axios.post('/api/add-employee', formData);
+            const response = await axios.post("/api/add-employee", formData);
             setMessage(response.data.message);
         } catch (error) {
             setMessage(
-                error.response?.data?.error || 'An error occurred. Please try again.'
+                error.response?.data?.error || "An error occurred. Please try again."
             );
         }
     };
 
+    const handleCancel = () => {
+        setFormData({
+            username: "",
+            firstName: "",
+            lastName: "",
+            address: "",
+            birthdate: "",
+            taxID: "",
+            hired: "",
+            employeeExperience: "",
+            salary: ""
+        });
+        setMessage(null);
+    };
+
     return (
-        <div className="container mt-5">
-            <h3>Add Employee</h3>
-            <form onSubmit={handleSubmit}>
-                {/* Username */}
-                <div className="form-group mb-3">
+        <div className="d-flex align-items-center flex-column mt-3 w-50">
+            <h5>Add Employee</h5>
+            <form className="w-50" onSubmit={handleSubmit}>
+                <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username:</label>
                     <input
                         type="text"
@@ -48,12 +60,11 @@ const AddEmployee = () => {
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
+                        placeholder="Enter username"
                         required
                     />
                 </div>
-
-                {/* First Name */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="firstName" className="form-label">First Name:</label>
                     <input
                         type="text"
@@ -62,12 +73,11 @@ const AddEmployee = () => {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
+                        placeholder="Enter first name"
                         required
                     />
                 </div>
-
-                {/* Last Name */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">Last Name:</label>
                     <input
                         type="text"
@@ -76,12 +86,11 @@ const AddEmployee = () => {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
+                        placeholder="Enter last name"
                         required
                     />
                 </div>
-
-                {/* Address */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="address" className="form-label">Address:</label>
                     <input
                         type="text"
@@ -90,12 +99,11 @@ const AddEmployee = () => {
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
+                        placeholder="Enter address"
                         required
                     />
                 </div>
-
-                {/* Birthdate */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="birthdate" className="form-label">Birthdate:</label>
                     <input
                         type="date"
@@ -107,9 +115,7 @@ const AddEmployee = () => {
                         required
                     />
                 </div>
-
-                {/* Tax ID */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="taxID" className="form-label">Tax ID:</label>
                     <input
                         type="text"
@@ -118,12 +124,11 @@ const AddEmployee = () => {
                         name="taxID"
                         value={formData.taxID}
                         onChange={handleChange}
+                        placeholder="Enter tax ID"
                         required
                     />
                 </div>
-
-                {/* Hired Date */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="hired" className="form-label">Hired Date:</label>
                     <input
                         type="date"
@@ -135,12 +140,8 @@ const AddEmployee = () => {
                         required
                     />
                 </div>
-
-                {/* Employee Experience */}
-                <div className="form-group mb-3">
-                    <label htmlFor="employeeExperience" className="form-label">
-                        Experience (Years):
-                    </label>
+                <div className="mb-3">
+                    <label htmlFor="employeeExperience" className="form-label">Experience (Years):</label>
                     <input
                         type="number"
                         className="form-control"
@@ -148,12 +149,11 @@ const AddEmployee = () => {
                         name="employeeExperience"
                         value={formData.employeeExperience}
                         onChange={handleChange}
+                        placeholder="Enter experience in years"
                         required
                     />
                 </div>
-
-                {/* Salary */}
-                <div className="form-group mb-3">
+                <div className="mb-3">
                     <label htmlFor="salary" className="form-label">Salary:</label>
                     <input
                         type="number"
@@ -162,40 +162,25 @@ const AddEmployee = () => {
                         name="salary"
                         value={formData.salary}
                         onChange={handleChange}
+                        placeholder="Enter salary"
                         required
                     />
                 </div>
-
-                {/* Submit Button */}
                 <div className="d-flex gap-2 mt-4">
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     <button
                         type="button"
                         className="btn btn-secondary"
-                        onClick={() => setFormData({
-                            username: '',
-                            firstName: '',
-                            lastName: '',
-                            address: '',
-                            birthdate: '',
-                            taxID: '',
-                            hired: '',
-                            employeeExperience: '',
-                            salary: '',
-                        })}
+                        onClick={handleCancel}
                     >
-                        Reset
+                        Cancel
                     </button>
                 </div>
             </form>
-
-            {/* Message */}
             {message && (
                 <div
                     className={`mt-3 alert ${
-                        message.includes('successfully') ? 'alert-success' : 'alert-danger'
+                        message.includes("successfully") ? "alert-success" : "alert-danger"
                     }`}
                 >
                     {message}
