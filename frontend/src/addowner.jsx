@@ -11,12 +11,20 @@ const AddOwner = () => {
         bdate: ""
     });
 
-    const handleSubmit = async (event) => {
+    const [message, setMessage] = useState(null); // State for messages
+
+    const handleAddOwner = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8081/addowner', values);
-            console.log('Response:', response.data);
+            const response = await axios.post("http://localhost:8081/add_owner", values);
+            
+            if (response.status === 200) {
+                setMessage("Owner added successfully.");
+            } else {
+                setMessage("Failed to add owner. Please check your input.");
+            }
         } catch (error) {
+            setMessage("Failed to add owner. Please check your input.");
             console.error('Error during POST request:', error);
         }
     };
@@ -29,7 +37,7 @@ const AddOwner = () => {
     return (
         <div className="d-flex align-items-center flex-column mt-3 w-50">
             <h5>Add Owner</h5>
-            <form className="w-50" onSubmit={handleSubmit}>
+            <form className="w-50" onSubmit={handleAddOwner}>
                 <div className="mb-3 mt-3">
                     <label htmlFor="username" className="form-label">Username:</label>
                     <input
@@ -91,6 +99,12 @@ const AddOwner = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+
+            {message && (
+                <div className={`mt-3 alert ${message.includes("successfully") ? "alert-success" : "alert-danger"}`}>
+                    {message}
+                </div>
+            )}
         </div>
     );
 };
