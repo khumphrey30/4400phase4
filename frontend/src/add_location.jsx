@@ -30,87 +30,75 @@ const AddLocation = () => {
   };
 
   return (
-    <div className="container mt-5 d-flex align-items-center flex-column">
-      <h3>Add Location</h3>
-      <form className="w-50">
-        <div className="form-group mt-3">
-          <label htmlFor="label">Label:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="label"
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
-            placeholder="Enter location label"
-          />
-        </div>
+    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <h5>Add Location</h5>
 
-        <div className="form-group mt-3">
-          <label htmlFor="xCoord">X Coordinate:</label>
-          <input
-            type="number"
-            className="form-control"
-            id="xCoord"
-            value={xCoord}
-            onChange={(e) => setXCoord(e.target.value)}
-            placeholder="Enter X Coordinate"
-          />
-        </div>
+      <div className="form-group mt-3 w-50">
+        <label>Label:</label>
+        <input
+          type="text"
+          className="form-control"
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
+          placeholder="Enter location label"
+        />
+      </div>
 
-        <div className="form-group mt-3">
-          <label htmlFor="yCoord">Y Coordinate:</label>
-          <input
-            type="number"
-            className="form-control"
-            id="yCoord"
-            value={yCoord}
-            onChange={(e) => setYCoord(e.target.value)}
-            placeholder="Enter Y Coordinate"
-          />
-        </div>
+      <div className="form-group mt-3 w-50">
+        <label>X Coordinate:</label>
+        <input
+          type="number"
+          className="form-control"
+          value={xCoord}
+          onChange={(e) => setXCoord(e.target.value)}
+          placeholder="Enter X Coordinate"
+        />
+      </div>
 
-        <div className="form-group mt-3">
-          <label htmlFor="space">Space:</label>
-          <input
-            type="number"
-            className="form-control"
-            id="space"
-            value={space}
-            onChange={(e) => setSpace(e.target.value)}
-            placeholder="Enter space value"
-          />
-        </div>
+      <div className="form-group mt-3 w-50">
+        <label>Y Coordinate:</label>
+        <input
+          type="number"
+          className="form-control"
+          value={yCoord}
+          onChange={(e) => setYCoord(e.target.value)}
+          placeholder="Enter Y Coordinate"
+        />
+      </div>
 
-        <div className="d-flex gap-2 mt-4">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleAddLocation}
-          >
-            Add Location
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => {
-              setLabel("");
-              setXCoord("");
-              setYCoord("");
-              setSpace("");
-              setMessage(null);
-            }}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <div className="form-group mt-3 w-50">
+        <label>Space:</label>
+        <input
+          type="number"
+          className="form-control"
+          value={space}
+          onChange={(e) => setSpace(e.target.value)}
+          placeholder="Enter space value"
+        />
+      </div>
+
+      <div className="d-flex gap-2 mt-4">
+        <button className="btn btn-primary" onClick={handleAddLocation}>
+          Add Location
+        </button>
+        <button
+          className="btn btn-secondary"
+          onClick={() => {
+            setLabel("");
+            setXCoord("");
+            setYCoord("");
+            setSpace("");
+            setMessage(null);
+          }}
+        >
+          Cancel
+        </button>
+      </div>
 
       {message && (
         <div
           className={`mt-3 alert ${
-            message.includes("successfully")
-              ? "alert-success"
-              : "alert-danger"
+            message.includes("successfully") ? "alert-success" : "alert-danger"
           }`}
         >
           {message}
