@@ -35,7 +35,8 @@ const AddOwner = () => {
     };
 
     return (
-        <div className="d-flex align-items-center flex-column mt-3 w-50">
+        <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-5%' }}>
+        <div className="d-flex align-items-center flex-column w-50">
             <h5>Add Owner</h5>
             <form className="w-50" onSubmit={handleAddOwner}>
                 <div className="mb-3 mt-3">
@@ -105,6 +106,7 @@ const AddOwner = () => {
                     {message}
                 </div>
             )}
+        </div>
         </div>
     );
 };

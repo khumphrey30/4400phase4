@@ -2,7 +2,8 @@ import React from "react";
 
 const RemoveVan = () => {
   return (
-    <div className="d-flex align-items-center flex-column mt-3 w-50">
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-16%' }}>
+      <div className="d-flex align-items-center flex-column w-50">
       <h5>Remove Van</h5>
       <form action="/remove_van" className="w-50">
         <div className="mb-3 mt-3">
@@ -33,6 +34,7 @@ const RemoveVan = () => {
           Remove Van
         </button>
       </form>
+    </div>
     </div>
   );
 };

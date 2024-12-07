@@ -24,7 +24,8 @@ const AddWorkerRole = () => {
   };
 
   return (
-    <div className="d-flex align-items-center flex-column mt-3 w-50">
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-18%' }}>
+      <div className="d-flex align-items-center flex-column w-50">
       <h5>Add Worker Role</h5>
       <form className="w-50" onSubmit={handleSubmit}>
         <div className="mb-3 mt-3">
@@ -61,6 +62,7 @@ const AddWorkerRole = () => {
           {message}
         </div>
       )}
+    </div>
     </div>
   );
 };

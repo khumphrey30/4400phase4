@@ -2,7 +2,8 @@ import React from 'react';
 
 const RemoveDriverRole = () => {
   return (
-    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-17%' }}>
+        <div className="d-flex align-items-center flex-column w-50">
       <h5>Remove Driver Role</h5>
       <form action="/remove_driver_role" className="w-50">
         <div className="mb-3 mt-3">
@@ -23,6 +24,7 @@ const RemoveDriverRole = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

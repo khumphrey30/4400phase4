@@ -15,7 +15,8 @@ const AddBusiness = () => {
     };
 
     return (
-        <div className="d-flex align-items-center flex-column mt-3 w-50">
+        <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-10%' }}>
+      <div className="d-flex align-items-center flex-column w-50">
             <h5>Add Business</h5>
             <form className="w-50" onSubmit={handleSubmit}>
                 <div className="mb-3 mt-3">
@@ -70,6 +71,7 @@ const AddBusiness = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+        </div>
         </div>
     );
 };

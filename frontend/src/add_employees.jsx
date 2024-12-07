@@ -48,7 +48,8 @@ const AddEmployee = () => {
     };
 
     return (
-        <div className="d-flex align-items-center flex-column mt-3 w-50">
+        <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '5%' }}>
+            <div className="d-flex align-items-center flex-column w-50">
             <h5>Add Employee</h5>
             <form className="w-50" onSubmit={handleSubmit}>
                 <div className="mb-3">
@@ -186,6 +187,7 @@ const AddEmployee = () => {
                     {message}
                 </div>
             )}
+        </div>
         </div>
     );
 };

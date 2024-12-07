@@ -49,7 +49,8 @@ const PurchaseProduct = () => {
   };
 
   return (
-    <div className="d-flex align-items-center flex-column mt-3 w-50">
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-7%' }}>
+      <div className="d-flex align-items-center flex-column w-50">
       <h5>Purchase Product</h5>
 
       <div className="form-group mt-3 w-50">
@@ -153,6 +154,7 @@ const PurchaseProduct = () => {
           {message}
         </div>
       )}
+    </div>
     </div>
   );
 };

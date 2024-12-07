@@ -2,7 +2,8 @@ import React from 'react';
 
 const AddVan = () => {
   return (
-    <div className="d-flex align-items-center flex-column mt-3 w-50">
+      <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-5%' }}>
+      <div className="d-flex align-items-center flex-column w-50">
       <h5>Add Van</h5>
       <form action="/add_van" className="w-50">
         <div className="mb-3 mt-3">
@@ -83,6 +84,7 @@ const AddVan = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };
