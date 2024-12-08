@@ -251,12 +251,18 @@ delimiter //
 create procedure start_funding (in ip_owner varchar(40), in ip_amount integer, in ip_long_name varchar(40), in ip_fund_date date)
 sp_main: begin
     if not exists (select 1 from business_owners where username = ip_owner) then
+        signal sqlstate '45000' set message_text = 'Owner does not exist';
         leave sp_main;
-    elseif not exists (select 1 from businesses where long_name = ip_long_name) then
+    else if not exists (select 1 from businesses where long_name = ip_long_name) then
+        signal sqlstate '45000' set message_text = 'Business does not exist';
         leave sp_main;
     else
         insert into fund (username, invested, invested_date, business)
         values (ip_owner, ip_amount, ip_fund_date, ip_long_name);
+        if row_count() = 0 then
+            signal sqlstate '45000' 
+            set message_text = 'Insert operation failed.';
+        end if;
     end if;
 end //
 delimiter ;

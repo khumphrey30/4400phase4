@@ -290,21 +290,34 @@ app.get('/businesses', (req, res) => {
     });
 });
 
-// (start_funding) Handling the procedure
+// start_funding handling
 app.post('/start_funding', (req, res) => {
-    const { ip_owner, ip_long_name, ip_amount, ip_fund_date } = req.body;
+    const users = "call start_funding(?)";
+    const values = [       
+        req.body.ip_owner,
+        req.body.ip_amount,
+        req.body.ip_long_name,
+        req.body.ip_fund_date]
 
-    const sql = 'CALL start_funding(?, ?, ?, ?)';
-    const values = [ip_owner, ip_long_name, ip_amount, ip_fund_date];
-
-    db.query(sql, values, (err, result) => {
+    db.query(users, [values], (err, data) => {
         if (err) {
-            console.error('Error executing stored procedure:', err.message);
-            return res.status(500).json({ Error: 'Failed to start funding.' });
+            console.error('Error executing stored procedure:', err.message, values);
+            return res.status(500).json({
+                Error: 'Failed to start funding.',
+                Details: err.sqlMessage || err.message
+            });
         }
-        return res.status(200).json({ Message: 'Funding successfully started!' });
-    });
+        if (data.affectedRows === 0) { // Use 'data' instead of 'result'
+            return res.status(400).json({
+                Error: 'No rows affected. Funding may not have started.'
+            });
+        }
+        return res.status(200).json({
+            Message: 'Funding successfully started!'
+        });
+    });     
 });
+
 
 // (takeover_van) Fetch drivers for the dropdown
 app.get('/drivers', (req, res) => {
