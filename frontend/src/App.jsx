@@ -29,7 +29,7 @@ import PurchaseProduct from './purchase_product';
 import AddEmployee from './add_employees';
 import AddProduct from './add_product';
 import AddWorkerRole from './add_worker_role';
-import AddDriverRole from './add_driver_role'
+import AddDriverRole from './add_driver_role';
 
 
 function App() {

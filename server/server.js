@@ -48,40 +48,36 @@ app.get('/', (req, res) => {
     })
 })
 
-// add owner handling
-app.post('/addowner', (req, res) => {
-    const users = "call add_owner(?)";
-    const values = [       
+// (add_owner) Handling the procedure
+app.post('/add_owner', (req, res) => {
+    const sql = "CALL add_owner(?, ?, ?, ?, ?)";
+    const values = [
         req.body.username,
         req.body.fname,
         req.body.lname,
         req.body.address,
-        req.body.bdate]
+        req.body.bdate
+    ];
+    db.query(sql, values, (err, data) => {
+        if(err) return res.status(500).json({Error: err});
+        return res.json(data);
+    });
+});
 
-    db.query(users, [values], (err, data) => {
-        if(err){
-            return res.json({Error: err})
-        }
-        return res.json(data)
-    })
-})
-
-// add business handling
-app.post('/addbusiness', (req, res) => {
-    const users = "call add_business(?)";
-    const values = [       
+// (add_business) Handling the procedure
+app.post('/add_business', (req, res) => {
+    const sql = "CALL add_business(?, ?, ?, ?)";
+    const values = [
         req.body.long_name,
         req.body.rating,
         req.body.spent,
-        req.body.location]
-
-    db.query(users, [values], (err, data) => {
-        if(err){
-            return res.json({Error: err})
-        }
-        return res.json(data)
-    })
-})
+        req.body.location
+    ];
+    db.query(sql, values, (err, data) => {
+        if(err) return res.status(500).json({Error: err});
+        return res.json(data);
+    });
+});
 
 // add employee handling
 app.post('/add_employees', (req, res) => {
@@ -346,6 +342,7 @@ app.post('/takeover_van', (req, res) => {
     });
 });
 
+/*
 // (load_van) Fetch vans for the dropdown
 app.get('/vans', (req, res) => {
     const sql = 'SELECT id FROM vans';
@@ -357,6 +354,7 @@ app.get('/vans', (req, res) => {
         return res.status(200).json(result);
     });
 });
+*/
 
 // (load_van) Fetch products for the dropdown
 app.get('/products', (req, res) => {
@@ -434,6 +432,10 @@ app.post('/purchase_product', (req, res) => {
     });
 });
 
+/*
+// this is a duplicate of add_worker_role we already have but the path is different: /api/add-worker-role 
+// commenting this out for now
+
 // (add_worker_role) Handling the procedure
 app.post('/api/add-worker-role', (req, res) => {
     const { username } = req.body;
@@ -458,6 +460,7 @@ app.post('/api/add-worker-role', (req, res) => {
         }
     });
 });
+*/
 
 // (add_product) Handling the procedure
 app.post('/api/add-product', (req, res) => {
@@ -566,6 +569,81 @@ app.post('/api/add-employee', (req, res) => {
             message: 'Employee added successfully!',
         });
     });
+
+    // (hire_employee) Handling the procedure
+    app.post('/hire_employee', (req, res) => {
+        const sql = "CALL hire_employee(?, ?)";
+        const values = [
+            req.body.username,
+            req.body.id
+        ];
+        db.query(sql, values, (err, data) => {
+            if(err) return res.status(500).json({Error: err});
+            return res.json(data);
+        });
+    });
+
+    // (fire_employee) Handling the procedure
+    app.post('/fire_employee', (req, res) => {
+        const sql = "CALL fire_employee(?, ?)";
+        const values = [
+            req.body.username,
+            req.body.id
+        ];
+        db.query(sql, values, (err, data) => {
+            if(err) return res.status(500).json({Error: err});
+            return res.json(data);
+        });
+    });
+
+    // (manage_service) Handling the procedure
+    app.post('/manage_service', (req, res) => {
+        const sql = "CALL manage_service(?, ?)";
+        const values = [
+            req.body.username,
+            req.body.id
+        ];
+        db.query(sql, values, (err, data) => {
+            if(err) return res.status(500).json({Error: err});
+            return res.json(data);
+        });
+    });
+
+    // (remove_product) Handling the procedure
+    app.post('/remove_product', (req, res) => {
+        const sql = "CALL remove_product(?)";
+        const values = [req.body.barcode];
+        db.query(sql, values, (err, data) => {
+            if(err) return res.status(500).json({Error: err});
+            return res.json(data);
+        });
+    });
+
+    // (remove_van) Handling the procedure
+    app.post('/remove_van', (req, res) => {
+        const sql = "CALL remove_van(?, ?)";
+        const values = [
+            req.body.id,
+            req.body.tag
+        ];
+        db.query(sql, values, (err, data) => {
+            if(err) return res.status(500).json({Error: err});
+            return res.json(data);
+        });
+    });
+
+    // (remove_driver_role) Handling the procedure
+    app.post('/remove_driver_role', (req, res) => {
+        const sql = "CALL remove_driver_role(?)";
+        const values = [req.body.username];
+        db.query(sql, values, (err, data) => {
+            if(err) return res.status(500).json({Error: err});
+            return res.json(data);
+        });
+    });
+    
+    
+
 });
 
 // db.end();
