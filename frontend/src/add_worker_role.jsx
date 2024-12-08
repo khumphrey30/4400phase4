@@ -1,71 +1,61 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 const AddWorkerRole = () => {
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
+    const [values, setValues] = useState({
+        username: "",
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage('');
-    try {
-      const response = await axios.post('/api/add-worker-role', { username });
-      setMessage(response.data.message);
-    } catch (error) {
-      setMessage(
-        error.response?.data?.message || 'An error occurred. Please try again.'
-      );
-    }
-  };
+    });
 
-  const handleCancel = () => {
-    setUsername('');
-    setMessage('');
-  };
+    const [message, setMessage] = useState(null); // State for messages
 
-  return (
-    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-18%' }}>
-      <div className="d-flex align-items-center flex-column w-50">
-      <h5>Add Worker Role</h5>
-      <form className="w-50" onSubmit={handleSubmit}>
-        <div className="mb-3 mt-3">
-          <label htmlFor="username" className="form-label">Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter username"
-            required
-          />
+    const handleAddWorkerRole = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:8081/add_worker_role", values);
+            
+            if (response.status === 200) {
+                setMessage("Worker added successfully.");
+            } else {
+                setMessage("Failed to add worker. Please check your input.");
+            }
+        } catch (error) {
+            setMessage("Failed to add worker. Please check your input.");
+            console.error('Error during POST request:', error);
+        }
+    };
+
+
+    return (
+        <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-5%' }}>
+        <div className="d-flex align-items-center flex-column w-50">
+            <h5>Add Worker Role</h5>
+            <form className="w-50" onSubmit={handleAddWorkerRole}>
+                <div className="mb-3 mt-3">
+                    <label htmlFor="username" className="form-label">Username:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="username"
+                        placeholder="Enter username"
+                        name="username"
+                        onChange={(e) => setValues({ ...values, username: e.target.value })}
+                        value={values.username}
+                    />
+                </div>
+
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+
+            {message && (
+                <div className={`mt-3 alert ${message.includes("successfully") ? "alert-success" : "alert-danger"}`}>
+                    {message}
+                </div>
+            )}
         </div>
-        <div className="d-flex gap-2 mt-4">
-          <button type="submit" className="btn btn-primary">
-            Add Role
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
         </div>
-      </form>
-      {message && (
-        <div
-          className={`mt-3 alert ${
-            message.toLowerCase().includes('error') ? 'alert-danger' : 'alert-success'
-          }`}
-        >
-          {message}
-        </div>
-      )}
-    </div>
-    </div>
-  );
+    );
 };
 
 export default AddWorkerRole;
-

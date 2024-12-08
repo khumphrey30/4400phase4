@@ -38,7 +38,7 @@ const DriveVan = () => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-12%' }}>
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-10%' }}>
       <div className="d-flex align-items-center flex-column w-50">
       <h5>Drive Van</h5>
       <form className="w-50">

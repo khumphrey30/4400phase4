@@ -2,7 +2,7 @@ import React from "react";
 
 const RemoveVan = () => {
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-16%' }}>
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-10%' }}>
       <div className="d-flex align-items-center flex-column w-50">
       <h5>Remove Van</h5>
       <form action="/remove_van" className="w-50">

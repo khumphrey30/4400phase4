@@ -2,7 +2,7 @@ import React from 'react';
 
 const FireEmployee = () => {
   return (
-      <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-15%' }}>
+      <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-10%' }}>
       <div className="d-flex align-items-center flex-column w-50">
       <h5>Fire Employee</h5>
       <form action="/fire_employee" className="w-50">

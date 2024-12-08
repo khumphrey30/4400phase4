@@ -1,94 +1,86 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
+import dayjs from 'dayjs'; // Import dayjs
 
 const AddEmployee = () => {
-    const [formData, setFormData] = useState({
+    const [values, setValues] = useState({
         username: "",
-        firstName: "",
-        lastName: "",
+        fname: "",
+        lname: "",
         address: "",
-        birthdate: "",
+        bdate: "",
         taxID: "",
         hired: "",
-        employeeExperience: "",
+        experience: "",
         salary: ""
     });
-    const [message, setMessage] = useState(null);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const [message, setMessage] = useState(null); // State for messages
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleAddEmployee = async (event) => {
+        event.preventDefault();
         try {
-            const response = await axios.post("/api/add-employee", formData);
-            setMessage(response.data.message);
+            const response = await axios.post("http://localhost:8081/add_employees", values);
+            
+            if (response.status === 200) {
+                setMessage("Employee added successfully.");
+            } else {
+                setMessage("Failed to add Employee. Please check your input.");
+            }
         } catch (error) {
-            setMessage(
-                error.response?.data?.error || "An error occurred. Please try again."
-            );
+            setMessage("Failed to add Employee. Please check your input.");
+            console.error('Error during POST request:', error);
         }
     };
 
-    const handleCancel = () => {
-        setFormData({
-            username: "",
-            firstName: "",
-            lastName: "",
-            address: "",
-            birthdate: "",
-            taxID: "",
-            hired: "",
-            employeeExperience: "",
-            salary: ""
-        });
-        setMessage(null);
+    const handleBdateChange = (e) => {
+        const formattedDate = dayjs(e.target.value).format('YYYY-MM-DD');
+        setValues({ ...values, bdate: formattedDate });
+    };
+    const handleHiredChange = (e) => {
+        const formattedDate = dayjs(e.target.value).format('YYYY-MM-DD');
+        setValues({ ...values, hired: formattedDate });
     };
 
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '5%' }}>
-            <div className="d-flex align-items-center flex-column w-50">
+        <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '10%' }}>
+        <div className="d-flex align-items-center flex-column w-50">
             <h5>Add Employee</h5>
-            <form className="w-50" onSubmit={handleSubmit}>
-                <div className="mb-3">
+            <form className="w-50" onSubmit={handleAddEmployee}>
+                <div className="mb-3 mt-3">
                     <label htmlFor="username" className="form-label">Username:</label>
                     <input
                         type="text"
                         className="form-control"
                         id="username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
                         placeholder="Enter username"
-                        required
+                        name="username"
+                        onChange={(e) => setValues({ ...values, username: e.target.value })}
+                        value={values.username}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="firstName" className="form-label">First Name:</label>
+                    <label htmlFor="fname" className="form-label">First Name:</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
+                        id="fname"
                         placeholder="Enter first name"
-                        required
+                        name="fname"
+                        onChange={(e) => setValues({ ...values, fname: e.target.value })}
+                        value={values.fname}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="lastName" className="form-label">Last Name:</label>
+                    <label htmlFor="lname" className="form-label">Last Name:</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
+                        id="lname"
                         placeholder="Enter last name"
-                        required
+                        name="lname"
+                        onChange={(e) => setValues({ ...values, lname: e.target.value })}
+                        value={values.lname}
                     />
                 </div>
                 <div className="mb-3">
@@ -97,23 +89,21 @@ const AddEmployee = () => {
                         type="text"
                         className="form-control"
                         id="address"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
                         placeholder="Enter address"
-                        required
+                        name="address"
+                        onChange={(e) => setValues({ ...values, address: e.target.value })}
+                        value={values.address}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="birthdate" className="form-label">Birthdate:</label>
+                    <label htmlFor="bdate" className="form-label">Birthdate:</label>
                     <input
                         type="date"
                         className="form-control"
-                        id="birthdate"
-                        name="birthdate"
-                        value={formData.birthdate}
-                        onChange={handleChange}
-                        required
+                        id="bdate"
+                        name="bdate"
+                        onChange={handleBdateChange}
+                        value={values.bdate}
                     />
                 </div>
                 <div className="mb-3">
@@ -123,22 +113,21 @@ const AddEmployee = () => {
                         className="form-control"
                         id="taxID"
                         name="taxID"
-                        value={formData.taxID}
-                        onChange={handleChange}
+                       
+                        onChange={(e) => setValues({ ...values, taxID: e.target.value })}
                         placeholder="Enter tax ID"
-                        required
+                        value={values.taxID}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="hired" className="form-label">Hired Date:</label>
+                    <label htmlFor="hired" className="form-label">Hired:</label>
                     <input
                         type="date"
                         className="form-control"
                         id="hired"
                         name="hired"
-                        value={formData.hired}
-                        onChange={handleChange}
-                        required
+                        onChange={handleHiredChange}
+                        value={values.hired}
                     />
                 </div>
                 <div className="mb-3">
@@ -148,10 +137,11 @@ const AddEmployee = () => {
                         className="form-control"
                         id="employeeExperience"
                         name="employeeExperience"
-                        value={formData.employeeExperience}
-                        onChange={handleChange}
+           
+                        onChange={(e) => setValues({ ...values, experience: e.target.value })}
                         placeholder="Enter experience in years"
-                        required
+                        value={values.experience}
+                        
                     />
                 </div>
                 <div className="mb-3">
@@ -161,29 +151,18 @@ const AddEmployee = () => {
                         className="form-control"
                         id="salary"
                         name="salary"
-                        value={formData.salary}
-                        onChange={handleChange}
+                        
+                        onChange={(e) => setValues({ ...values, salary: e.target.value })}
                         placeholder="Enter salary"
-                        required
+                        value={values.salary}
+                        
                     />
                 </div>
-                <div className="d-flex gap-2 mt-4">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                    <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={handleCancel}
-                    >
-                        Cancel
-                    </button>
-                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+
             {message && (
-                <div
-                    className={`mt-3 alert ${
-                        message.includes("successfully") ? "alert-success" : "alert-danger"
-                    }`}
-                >
+                <div className={`mt-3 alert ${message.includes("successfully") ? "alert-success" : "alert-danger"}`}>
                     {message}
                 </div>
             )}

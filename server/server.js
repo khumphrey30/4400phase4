@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
     })
 })
 
-
+// add owner handling
 app.post('/addowner', (req, res) => {
     const users = "call add_owner(?)";
     const values = [       
@@ -66,6 +66,112 @@ app.post('/addowner', (req, res) => {
     })
 })
 
+// add business handling
+app.post('/addbusiness', (req, res) => {
+    const users = "call add_business(?)";
+    const values = [       
+        req.body.long_name,
+        req.body.rating,
+        req.body.spent,
+        req.body.location]
+
+    db.query(users, [values], (err, data) => {
+        if(err){
+            return res.json({Error: err})
+        }
+        return res.json(data)
+    })
+})
+
+// add employee handling
+app.post('/add_employees', (req, res) => {
+    const users = "call add_employee(?)";
+    const values = [       
+        req.body.username,
+        req.body.fname,
+        req.body.lname,
+        req.body.address,
+        req.body.bdate,
+        req.body.taxID,
+        req.body.hired, 
+        req.body.experience,
+        req.body.salary]
+
+    db.query(users, [values], (err, data) => {
+        if(err){
+            return res.json({Error: err})
+        }
+        return res.json(data)
+    })
+})
+
+// add product handling
+app.post('/add_product', (req, res) => {
+    const users = "call add_product(?)";
+    const values = [       
+        req.body.barcode,
+        req.body.name,
+        req.body.weight]
+
+    db.query(users, [values], (err, data) => {
+        if(err){
+            return res.json({Error: err})
+        }
+        return res.json(data)
+    })
+})
+
+// add worker handling
+app.post('/add_worker_role', (req, res) => {
+    const users = "call add_worker_role(?)";
+    const values = [       
+        req.body.username]
+
+    db.query(users, [values], (err, data) => {
+        if(err){
+            return res.json({Error: err})
+        }
+        return res.json(data)
+    })
+})
+
+// add van handling
+app.post('/addvan', (req, res) => {
+    const users = "call add_van(?)";
+    const values = [       
+        req.body.id,
+        req.body.tag,
+        req.body.fuel,
+        req.body.capacity,
+        req.body.sales,
+        req.body.driven_by]
+
+    db.query(users, [values], (err, data) => {
+        if(err){
+            return res.json({Error: err})
+        }
+        return res.json(data)
+    })
+})
+
+// add driver role handling
+app.post('/add_driver_role', (req, res) => {
+    const users = "call add_driver_role(?)";
+    const values = [       
+        req.body.username,
+        req.body.licenseID,
+        req.body.licenseType,
+        req.body.experience]
+
+    db.query(users, [values], (err, data) => {
+        if(err){
+            return res.json({Error: err})
+        }
+        return res.json(data)
+    })
+})
+
+// display views handling
 app.get('/ownerview', (req, res) => {
     const owner_view = 'SELECT * FROM display_owner_view;';
     db.query(owner_view, (err, data) => {
@@ -127,35 +233,6 @@ app.get('/serviceview', (req, res) => {
 });
 
 
-
-app.put('/update/:username', (req, res) => {
-    const users = "update users set fname = ?, lname = ?, address = ?, birthdate = ? where username = ?; ";
-    const values = [       
-        req.body.username,
-        req.body.fname,
-        req.body.lname,
-        req.body.address,
-        req.body.birthdate]
-    const username = req.params.username;
-    db.query(sql, [...values, username], (err, data) => {
-        if(err){
-            return res.json({Error: "Error"})
-        }
-        return res.json(data)
-    })
-})
-
-
-app.delete('/delete/:username', (req, res) => {
-    const users = "delete from users where username = ?; ";
-    const username = req.params.username;
-    db.query(sql, [username], (err, data) => {
-        if(err){
-            return res.json({Error: "Error"})
-        }
-        return res.json(data)
-    })
-})
 
 // (add_service) Handling the procedure
 app.post('/add_service', (req, res) => {

@@ -44,7 +44,7 @@ const LoadVan = () => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-7%' }}>
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-5%' }}>
       <div className="d-flex align-items-center flex-column w-50">
       <h5>Load Van</h5>
       <form className="w-50">

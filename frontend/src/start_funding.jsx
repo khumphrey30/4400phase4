@@ -58,7 +58,7 @@ const StartFunding = () => {
     };
 
     return (
-    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-10%' }}>
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ marginTop: '-5%' }}>
       <div className="d-flex align-items-center flex-column w-50">
             <h5>Start Funding</h5>
             <form className="w-50" onSubmit={handleSubmit}>
